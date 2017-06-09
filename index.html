@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#">
+        <div class="form_block">
+            <label for="Name">Login</label>
+            <input type="text" name="Name" placeholder="Name">
+        </div>
+        <div class="form_block">
+            <label for="Last_name">Login</label>
+            <input type="text" name="Last_name" placeholder="Last name">
+        </div>
+        <div class="form_block" id="email_block">
+            <label for="email">Email</label>
+            <input type="email" name="replyto" id="email" value="">
+        </div>
+        <div class="form_block">
+            <textarea type="text" name="Comment" placeholder="Leave a comment"></textarea>
+        </div>
+        <button type="submit" name="button">Submit</button>
+    </form>
+    <script type="text/javascript">
+        // Function to get email from url
+        function getEmail(param) {
+            var vars = {};
+            window.location.href.replace(location.hash, '').replace(
+                /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+                function(m, key, value) { // callback
+                    vars[key] = value !== undefined ? value : '';
+                }
+            );
+
+            if (param) {
+                return vars[param] ? vars[param] : null;
+            }
+            return vars;
+        }
+        var userEmail = getEmail('email').replace('%40', '@');
+        
+        //put email from url to input value
+        document.getElementById('email').value = userEmail;
+    </script>
+</body>
+
+</html>
